@@ -1,83 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bit | Freelance Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 {
-      border-bottom: 2px solid #4CAF50;
-      padding-bottom: 0.5rem;
-    }
-    .services ul, .contact p {
-      margin: 1rem 0;
-      line-height: 1.6;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #ddd;
-      color: #555;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharth Dilipsingh Aadha — Creative Writer & Storyteller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #16151f;
+    --ink-soft: #221f2f;
+    --ink-line: #34304a;
+    --paper: #f6f2e9;
+    --coral: #ff5a36;
+    --gold: #ffc94a;
+    --text-hi: #f6f2e9;
+    --text-muted: #9c98ac;
+    --text-dark: #1c1b26;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--text-hi);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .display{ font-family: 'Fraunces', serif; }
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible{ opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8vw 7vw 6vw;
+    overflow: hidden;
+  }
+  .hero::before{
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -12%;
+    width: 60vw;
+    height: 140%;
+    background: var(--coral);
+    opacity: 0.14;
+    transform: skewX(-12deg);
+    pointer-events: none;
+  }
+  .ribbon{
+    position: absolute;
+    top: 38px;
+    right: -54px;
+    background: var(--coral);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    padding: 8px 64px;
+    transform: rotate(6deg);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    white-space: nowrap;
+    z-index: 3;
+  }
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 22px;
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 8vw, 6.2rem);
+    line-height: 0.98;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  .hero h1 em{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--coral);
+  }
+  .hero .role{
+    margin-top: 24px;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+  .hero .role strong{ color: var(--text-hi); font-weight: 600; }
+
+  .hero-meta{
+    margin-top: 56px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .hero-meta span{ display:block; color: var(--text-hi); font-size: 15px; margin-top: 4px; }
+
+  .scroll-cue{
+    position: absolute;
+    bottom: 36px;
+    left: 7vw;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scroll-cue::before{
+    content: "";
+    width: 22px; height: 1px;
+    background: var(--text-muted);
+    display: inline-block;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding: 8vw 7vw; position: relative; }
+  .section-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after{
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: var(--ink-line);
+  }
+  h2.section-title{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0 0 44px;
+    max-width: 20ch;
+  }
+
+  /* ---------- about / story ---------- */
+  .story{ background: var(--ink); }
+  .story-wrap{
+    position: relative;
+    max-width: 860px;
+  }
+  .quote-mark{
+    position: absolute;
+    top: -70px;
+    left: -20px;
+    font-family: 'Fraunces', serif;
+    font-size: 220px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ink-line);
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+  }
+  .story p{
+    position: relative;
+    z-index: 1;
+    font-size: clamp(1.15rem, 2.3vw, 1.55rem);
+    line-height: 1.6;
+    color: var(--text-hi);
+    font-weight: 400;
+    margin: 0;
+  }
+  .story p + p{ margin-top: 26px; color: var(--text-muted); font-size: clamp(1rem, 1.6vw, 1.15rem); }
+
+  /* ---------- skills ---------- */
+  .skills{ background: var(--paper); color: var(--text-dark); }
+  .skills .section-label{ color: #c9401f; }
+  .skills .section-label::after{ background: #ddd4bf; }
+  .skill-groups{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+  }
+  .skill-group h3{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a7f63;
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+  .pills{ display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill{
+    font-size: 14.5px;
+    padding: 9px 16px;
+    border-radius: 100px;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: transform .25s ease, background .25s ease;
+  }
+  .pill:nth-of-type(3n+1){ background: var(--coral); color: var(--ink); }
+  .pill:nth-of-type(3n+2){ background: var(--ink); color: var(--paper); }
+  .pill:nth-of-type(3n){ background: transparent; color: var(--text-dark); border-color: #1c1b26; }
+  .pill:hover{ transform: translateY(-3px); }
+
+  /* ---------- education ---------- */
+  .edu{ background: var(--ink); }
+  .edu-list{ display: flex; flex-direction: column; gap: 0; max-width: 780px; }
+  .edu-item{
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 26px 0;
+    border-top: 1px solid var(--ink-line);
+  }
+  .edu-list .edu-item:last-child{ border-bottom: 1px solid var(--ink-line); }
+  .edu-year{ font-family: 'IBM Plex Mono', monospace; color: var(--text-muted); font-size: 14px; }
+  .edu-name{ font-size: 1.15rem; font-weight: 600; }
+  .edu-name span{ display:block; font-weight: 400; color: var(--text-muted); font-size: 0.95rem; margin-top: 4px; }
+  .edu-score{
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--gold);
+    font-size: 15px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px){
+    .edu-item{ grid-template-columns: 1fr; gap: 6px; }
+    .edu-score{ text-align: left; }
+  }
+
+  /* ---------- next chapter (honest placeholder for projects) ---------- */
+  .next{ background: var(--ink-soft); }
+  .next-box{
+    border: 1px dashed var(--ink-line);
+    border-radius: 18px;
+    padding: 48px;
+    text-align: center;
+    max-width: 700px;
+  }
+  .next-box p.big{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    margin: 0 0 12px;
+    color: var(--text-hi);
+  }
+  .next-box p.small{ color: var(--text-muted); margin: 0; font-size: 0.98rem; }
+
+  /* ---------- contact ---------- */
+  .contact{
+    background: var(--coral);
+    color: var(--ink);
+    text-align: left;
+  }
+  .contact .section-label{ color: var(--ink); opacity: 0.7; }
+  .contact .section-label::after{ background: rgba(22,21,31,0.25); }
+  .contact h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    margin: 0 0 40px;
+    max-width: 18ch;
+    line-height: 1.02;
+  }
+  .contact-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .contact-links{ display: flex; flex-direction: column; gap: 18px; }
+  .contact-row{ display:flex; align-items:center; gap: 14px; font-size: 1.15rem; font-weight: 600; }
+  .contact-row .mono{ font-size: 13px; color: rgba(22,21,31,0.6); min-width: 90px; letter-spacing: 0.08em; text-transform: uppercase;}
+  .copy-btn{
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 14px 26px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .copy-btn:hover{ transform: translateY(-2px); background: #0f0e17; }
+  .copy-btn:focus-visible, a:focus-visible, .pill:focus-visible{
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  footer{
+    background: var(--ink);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    .hero::before, .ribbon, .quote-mark{ display: none; }
+    body{ background: #fff; color: #000; }
+    .hero, .story, .edu, .next{ background: #fff; color: #000; page-break-inside: avoid; }
+    .skills{ background: #fff; }
+    .contact{ background: #fff; color: #000; }
+    .pill{ background: #eee !important; color: #000 !important; border: 1px solid #999 !important; }
+    .copy-btn{ display: none; }
+    section{ padding: 24px 0; }
+    .reveal{ opacity: 1 !important; transform: none !important; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Bit | Freelance Portfolio</h1>
-    <p>Student | Storywriter | Writer | Designer | Coder</p>
-  </header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>I’m Bit, a student passionate about coding, writing, and creative design. I offer freelance services like writing stories, programming help, writing tasks, and thumbnails. I'm dedicated, punctual, and always learning new skills.</p>
+  <section class="hero">
+    <div class="ribbon">FRESH INK · OPEN TO WORK</div>
+    <p class="eyebrow">Portfolio &amp; Resume</p>
+    <h1 class="display">Siddharth<br>Dilipsingh<br><em>Aadha</em></h1>
+    <p class="role">Creative writer, budding designer, and <strong>storyteller-in-training</strong> — currently a student, always building something new.</p>
+    <div class="hero-meta">
+      <div>Based in<span>Chikhali, PCMC, Pune</span></div>
+      <div>Status<span>Fresher — Open to Internships</span></div>
+      <div>Reach me<span>sdcharan098@gmail.com</span></div>
+    </div>
+    <div class="scroll-cue">SCROLL — THE STORY SO FAR</div>
   </section>
 
-  <section class="services">
-    <h2>Services</h2>
-    <ul>
-      <li>✔️ Writing Stories, Letters, Emails, Scripts</li>
-      <li>✔️ Basic Programming Support (HTML/CSS/JS)</li>
-      <li>✔️ Thumbnail Design for YouTube or Blogs</li>
-      <li>✔️ Data Entry (Excel, PDF to Word, Google Sheets)</li>
-    </ul>
+  <section class="story reveal">
+    <p class="section-label">Chapter One</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="story-wrap">
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <p>I'm a student who's always chasing the next thing to learn. Imagination and creativity have shaped the way I see the world since I was a kid, and that hasn't changed — it's just found new outlets.</p>
+      <p>I have a working knowledge of HTML &amp; CSS, I use AI tools to work smarter and faster, and whatever I take on, I get it done on time. No exceptions.</p>
+    </div>
   </section>
 
-  <section class="samples">
-    <h2>Sample Work</h2>
-    <p>Coming Soon: I will upload images and samples of my work here (writing clips, thumbnails, code screenshots).</p>
+  <section class="skills reveal">
+    <p class="section-label">Chapter Two</p>
+    <h2 class="section-title">What I Bring to the Table</h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Creative</h3>
+        <div class="pills">
+          <span class="pill">Creative Writing</span>
+          <span class="pill">Storytelling</span>
+          <span class="pill">Content Writing</span>
+          <span class="pill">Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Technical</h3>
+        <div class="pills">
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">Web Development</span>
+          <span class="pill">MS Office</span>
+          <span class="pill">Data Entry</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>People &amp; Language</h3>
+        <div class="pills">
+          <span class="pill">Problem-Solving</span>
+          <span class="pill">Communication</span>
+          <span class="pill">English</span>
+          <span class="pill">Hindi</span>
+          <span class="pill">Marathi</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="contact">
-    <h2>Contact Me</h2>
-    <p>📩 Fiverr Profile: <a href="
-http://www.fiverr.com/s/dDwvNLZ
-">[Here is my fiverr profile]</a></p>
-    <p>💬 You can reach out to me anytime for work or collaboration!</p>
+  <section class="edu reveal">
+    <p class="section-label">Chapter Three</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-year">12th Std.</div>
+        <div class="edu-name">HSC Board<span>Higher Secondary Certificate</span></div>
+        <div class="edu-score">65%</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">Entrance</div>
+        <div class="edu-name">MHT-CET<span>Chemistry score: 90 / 100</span></div>
+        <div class="edu-score">80th Percentile</div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2025 Bit. All Rights Reserved.
-  </footer>
+  <section class="next reveal">
+    <p class="section-label">Chapter Four</p>
+    <h2 class="section-title">Work in Progress</h2>
+    <div class="next-box">
+      <p class="big">The portfolio is still being written.</p>
+      <p class="small">No published projects yet — but that's exactly why I'm looking for a chance to start. Give me a brief, and I'll bring the story, the design, and the follow-through.</p>
+    </div>
+  </section>
+
+  <section class="contact reveal">
+    <p class="section-label">Final Chapter</p>
+    <h2>Let's start<br>a new one — <br>together.</h2>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <div class="contact-row"><span class="mono">Email</span> <a href="mailto:sdcharan098@gmail.com">sdcharan098@gmail.com</a></div>
+        <div class="contact-row"><span class="mono">Location</span> Vitthal Nagar, Chikhali, PCMC</div>
+      </div>
+      <button class="copy-btn" id="copyBtn">COPY EMAIL ADDRESS</button>
+    </div>
+  </section>
+
+  <footer>Copyright © 2026 Siddharth Aadha. All rights reserved.</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => obs.observe(el));
+
+  // copy email
+  const btn = document.getElementById('copyBtn');
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText('sdcharan098@gmail.com').then(() => {
+      btn.textContent = 'COPIED ✓';
+      setTimeout(() => { btn.textContent = 'COPY EMAIL ADDRESS'; }, 1800);
+    }).catch(() => {
+      btn.textContent = 'sdcharan098@gmail.com';
+    });
+  });
+</script>
+
 </body>
 </html>
