@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Siddharth Dilipsingh Aadha — Creative Writer & Storyteller</title>
+<title>BIT — Creative Writer & Storyteller</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -352,12 +352,10 @@
   <section class="hero">
     <div class="ribbon">FRESH INK · OPEN TO WORK</div>
     <p class="eyebrow">Portfolio &amp; Resume</p>
-    <h1 class="display">Siddharth<br>Dilipsingh<br><em>Aadha</em></h1>
+    <h1 class="display">BIT</h1>
     <p class="role">Creative writer, budding designer, and <strong>storyteller-in-training</strong> — currently a student, always building something new.</p>
     <div class="hero-meta">
-      <div>Based in<span>Chikhali, PCMC, Pune</span></div>
       <div>Status<span>Fresher — Open to Internships</span></div>
-      <div>Reach me<span>sdcharan098@gmail.com</span></div>
     </div>
     <div class="scroll-cue">SCROLL — THE STORY SO FAR</div>
   </section>
@@ -439,14 +437,12 @@
     <h2>Let's start<br>a new one — <br>together.</h2>
     <div class="contact-grid">
       <div class="contact-links">
-        <div class="contact-row"><span class="mono">Email</span> <a href="mailto:sdcharan098@gmail.com">sdcharan098@gmail.com</a></div>
-        <div class="contact-row"><span class="mono">Location</span> Vitthal Nagar, Chikhali, PCMC</div>
       </div>
       <button class="copy-btn" id="copyBtn">COPY EMAIL ADDRESS</button>
     </div>
   </section>
 
-  <footer>Copyright © 2026 Siddharth Aadha. All rights reserved.</footer>
+  <footer>Copyright © 2026 BIT. All rights reserved.</footer>
 
 <script>
   // scroll reveal
@@ -455,17 +451,6 @@
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); } });
   }, { threshold: 0.15 });
   revealEls.forEach(el => obs.observe(el));
-
-  // copy email
-  const btn = document.getElementById('copyBtn');
-  btn.addEventListener('click', () => {
-    navigator.clipboard.writeText('sdcharan098@gmail.com').then(() => {
-      btn.textContent = 'COPIED ✓';
-      setTimeout(() => { btn.textContent = 'COPY EMAIL ADDRESS'; }, 1800);
-    }).catch(() => {
-      btn.textContent = 'sdcharan098@gmail.com';
-    });
-  });
 </script>
 
 </body>
